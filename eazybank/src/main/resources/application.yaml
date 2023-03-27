@@ -1,0 +1,39 @@
+server:
+  servlet:
+    context-path: /api
+  port: 8081
+
+spring:
+  application:
+    name: eazybank
+  devtools:
+    add-properties: true
+  datasource:
+    url: jdbc:mysql://finance-stock.c9hpvbon65ez.us-east-1.rds.amazonaws.com:3306/eazybank
+    username: admin
+    password: Financ3Stok3
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    open-in-view: true
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8082/realms/eazybankdev/protocol/openid-conncet/certs
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    web: debug
